@@ -7,17 +7,30 @@ namespace Even_Fibonacci_numbers
     {
         static void Main(string[] args)
         {
+            const int Limit = 4000000;
+
             List<int> Numbers = new List<int>();
-            Numbers[0] = 1;
-            Numbers[1] = 2;
-            
-            int i = 2;
-            while(Numbers[i] < 4000000){
-                Numbers[i] = Numbers[i - 1] + Numbers[i - 2];
-                i++;
-                Numbers[i] = 0;
-            
+            Numbers.Add(1);
+            Numbers.Add(2);
+
+            int Count = 1;
+            while(Numbers[Count] < Limit){
+                Count++;
+                Numbers.Add(Numbers[Count - 1] + Numbers[Count - 2]);
+                                    
             }
+            Numbers.RemoveAt(Count);
+
+            int Sum = 0;
+            foreach (int i in Numbers)
+            {
+                if (i % 2 == 0)
+                {
+                    Sum += i;
+                }
+            }
+            Console.WriteLine("The sum of all the Even fibonacci numbers under 4,000,000 is " + Sum);
+            Console.ReadLine();
         }
     }
 }
